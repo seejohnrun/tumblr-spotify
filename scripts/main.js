@@ -1,10 +1,11 @@
 require([
   '$api/models',
   '$views/list#List',
+  '$views/throbber#Throbber',
   'scripts/vendor/jquery-2.0.3.min',
   'scripts/vendor/underscore-min#_',
   'scripts/blog_track_list'
-], function(models, List, jQuery, _, blog_track_list) {
+], function(models, List, Throbber, jQuery, _, blog_track_list) {
   'use strict';
 
   // blogs
@@ -12,13 +13,12 @@ require([
 
   $(function () {
 
-    // Put up the loading indicator
-    var $container = $('#container');
-    $container.text('Loading...'); // TODO make prettier
-
     // Load templates
+    var $container = $('#container');
     var bcTemplate = _.template($('#blog-card-template').html());
     var blogsTemplate = _.template($('#blogs-template').html());
+    var blogTemplate = _.template($('#blog-template').html());
+    var blogHeaderTemplate = _.template($('#blog-header-template').html());
 
     // Handle new requests
     var start = function (args) {
@@ -32,36 +32,33 @@ require([
 
     // Load all pages
     var loadBlogDirectory = function () {
-
+      // Load the template
+      $container.html(blogsTemplate());
+      var $blogs = $container.find('.blogs');
+      var throbber = Throbber.forElement($blogs[0]);
       // Add each of the friends as a link
       blog_track_list.loadFriends(blogNames, function (blogs) {
-
-        $container.html(blogsTemplate());
-        var $blogs = $container.find('.blogs');
         blogs.forEach(function (blogDetail) {
           blogDetail.avatar64 = 'http://api.tumblr.com/v2/blog/' + blogDetail.name + '.tumblr.com/avatar/64';
           $blogs.append(bcTemplate(blogDetail));
         });
-
+        throbber.hide();
       });
-
     };
 
     var loadBlog = function (blogName) {
 
-      var $link = $('<a>').text('back to friends').attr('href', 'spotify:app:tumblr');
-      $container.append($link);
-      $container.append($('<hr>'));
+      $container.html(blogTemplate());
+      var $blog = $container.find('#blog');
+      var blogThrobber = Throbber.forElement($blog[0]);
 
       blog_track_list.trackListing(blogName, function (blog, uris) {
 
+        blogThrobber.hide();
         if (uris.length === 0) { return; }
 
         // Load up detail about this person
-        var $detail = $('<div>');
-        $detail.append($('<h2>').text('Recent from ' + blog.name));
-        $detail.append($('<a>').attr('href', blog.url));
-        $container.append($detail);
+        $container.append(blogHeaderTemplate(blog));
 
         // Make an OTF playlist
         var tempName = 'tumblr:' + blog.name + ':' + new Date().getTime().toString();
