@@ -59,3 +59,13 @@ hr {
 	margin: 20px 0px;
 	border-bottom: none;
 }
+
+small {
+	color: #777;
+	padding: 0px 10px;
+	font-size: 1.2em;
+}
+
+small a, small a:visited {
+	color: #444;
+}
