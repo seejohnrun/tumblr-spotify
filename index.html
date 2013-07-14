@@ -17,5 +17,18 @@
   <body>
 		<div id="container"></div>
     <script src="scripts/main.js"></script>
+
+		<script type="text/template" id="blogs-template">
+			<h2>Blogs you follow</h2>
+			<div class="blogs"></div>
+		</script>
+
+		<script type="text/template" id="blog-card-template">
+			<a href="spotify:app:tumblr:blogName:<%= name %>">
+				<img src="<%= avatar64 %>">
+				<%= title %>
+			</a>
+		</script>
+
   </body>
 </html>
