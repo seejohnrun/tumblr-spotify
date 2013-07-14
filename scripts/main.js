@@ -41,7 +41,7 @@ require([
       // Add each of the friends as a link
       blog_track_list.loadFriends(blogNames, function (blogs) {
         blogs.forEach(function (blogDetail) {
-          blogDetail.avatar64 = 'http://api.tumblr.com/v2/blog/' + blogDetail.name + '.tumblr.com/avatar/64';
+          blogDetail.avatar96 = 'http://api.tumblr.com/v2/blog/' + blogDetail.name + '.tumblr.com/avatar/96';
           $blogs.append(bcTemplate(blogDetail));
         });
         throbber.hide();
