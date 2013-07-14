@@ -21,12 +21,12 @@ require([
   var trackListing = function (blogName, callback) {
 
     // Get the blog info
-    $.get(base + 'blog/' + blogName + '/info?api_key=' + apiKey, function (data) {
+    $.get(base + 'blog/' + blogName + '.tumblr.com/info?api_key=' + apiKey, function (data) {
 
       var blog = data.response.blog;
 
       // Grab songs and find on spotify
-      $.get(base + 'blog/' + blogName + '/posts?type=audio&limit=15&api_key=' + apiKey, function (postData) {
+      $.get(base + 'blog/' + blogName + '.tumblr.com/posts?type=audio&limit=15&api_key=' + apiKey, function (postData) {
 
           var uris = [];
           var pending = postData.response.posts.length;
@@ -38,7 +38,7 @@ require([
               if (t.length > 0) { uris.push(t._uris[0]); } // add result
 
               pending -= 1;
-              if (pending === 0 || uris.length == 10) {
+              if (pending === 0) {
                 callback(data.response.blog, uris);
               }
 
