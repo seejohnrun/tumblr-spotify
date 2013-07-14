@@ -20,7 +20,8 @@ require([
     'thefader.tumblr.com',
     'spotify.tumblr.com',
     'cmj.tumblr.com',
-    'buzzfeedmusic.tumblr.com'
+    'buzzfeedmusic.tumblr.com',
+    'iam.beyonce.com'
   ];
 
   $(function () {
