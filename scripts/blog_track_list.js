@@ -26,11 +26,17 @@ require([
       var blog = data.response.blog;
 
       // Grab songs and find on spotify
-      $.get(base + 'blog/' + blogName + '.tumblr.com/posts?type=audio&limit=15&api_key=' + apiKey, function (postData) {
+      $.get(base + 'blog/' + blogName + '.tumblr.com/posts?type=audio&limit=50&api_key=' + apiKey, function (postData) {
 
           var uris = [];
           var pending = postData.response.posts.length;
           postData.response.posts.forEach(function (post) {
+
+            // FAIL
+            if (! post.track_name) {
+              pending -= 1;
+              return;
+            }
 
             var searcher = Search.search(post.track_name + '  ' + post.artist);
             searcher.tracks.snapshot({ length: 1 }).done(function (t) {
