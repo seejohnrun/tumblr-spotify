@@ -7,5 +7,34 @@ html {
 }
 
 body {font-family: 'Helvetica Neue', Helvetica, sans-serif;}
-h1 {background: no-repeat url('../images/tumblr.png');width:420px;height:120px;text-indent:-9999em;}
 #container {margin: 0 auto; width: 95%;}
+
+h1 {
+	background: no-repeat url('../images/tumblr.png');
+	width: 300px;
+	height:90px;
+	text-indent:-9999em;
+}
+
+.ovy {
+	border: 1px solid #555;
+	display: block;
+	float: left;
+	margin: 10px;
+	width: 96px;
+	height: 96px;
+	box-shadow: 5px 5px 10px #aaa;
+}
+
+h2 {
+	font-family: 'Helvetica Neue';
+	font-weight: lighter;
+	font-size: 36px;
+	margin: 0px 10px;
+}
+
+hr {
+	border: 1px solid #ccc;
+	margin: 20px 0px;
+	border-bottom: none;
+}

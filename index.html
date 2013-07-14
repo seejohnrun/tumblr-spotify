@@ -19,21 +19,16 @@
     <script src="scripts/main.js"></script>
 
 		<script type="text/template" id="blogs-template">
-            <h1>Tumblr</h1>
+			<h1>Tumblr</h1>
+			<hr/>
 			<h2>Friends you follow</h2>
-			<ul class="blogs"></ul>
+			<div class="blogs"></div>
 		</script>
 
 		<script type="text/template" id="blog-card-template">
-            <li>
-                <div class="avy">
-                    <a href="spotify:app:tumblr:blogName:<%= name %>">
-                        <img src="<%= avatar64 %>">
-                    </a>
-                    <h4><a href="spotify:app:tumblr:blogName:<%= name %>"><%= title %></a>
-                    <p class="desc"><%= description %></p>
-                </div>
-            </li>
+			<a class="ovy" href="spotify:app:tumblr:blogName:<%= name %>">
+				<img src="<%= avatar96 %>">
+			</a>
 		</script>
 
 		<script type="text/template" id="blog-header-template">
