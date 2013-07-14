@@ -1,3 +1,7 @@
 html {
   overflow: auto;
 }
+
+.blogs, #blog {
+	min-height: 100px;
+}

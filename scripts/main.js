@@ -58,7 +58,7 @@ require([
         if (uris.length === 0) { return; }
 
         // Load up detail about this person
-        $container.append(blogHeaderTemplate(blog));
+        $blog.append(blogHeaderTemplate(blog));
 
         // Make an OTF playlist
         var tempName = 'tumblr:' + blog.name + ':' + new Date().getTime().toString();
@@ -70,7 +70,7 @@ require([
 
             // And put it in a list
             var list = new List.forPlaylist(playlist);
-            $container.append(list.node);
+            $blog.append(list.node);
             list.init(); // TODO not sure what this does
 
           });
