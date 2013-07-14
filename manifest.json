@@ -17,8 +17,8 @@
   "BundleType": "Application",
   "BundleVersion": "0.0.1",
   "Dependencies": {
-    "api": "1.3.0",
-    "views": "1.10.0"
+    "api": "1.30.0",
+    "views": "1.42.0"
   },
   "RequiredPermissions": [
     "http://api.tumblr.com"

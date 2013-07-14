@@ -26,7 +26,7 @@ require([
               if (t.length > 0) { uris.push(t._uris[0]); } // add result
 
               pending -= 1;
-              if (pending === 0) {
+              if (pending === 0 || uris.length == 10) {
                 callback(data.response.blog, uris);
               }
 

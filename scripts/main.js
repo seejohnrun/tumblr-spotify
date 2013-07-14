@@ -27,16 +27,21 @@ require([
         $detail.append($('<a>').attr('href', blog.url));
         $container.append($detail);
 
-        // Make an OTF collection
-        var collection = new models.Collection;
-        uris.forEach(function (uri) {
-          collection.add(models.Track.fromURI(uri));
-        });
+        // Make an OTF playlist
+        models.Playlist.createTemporary('tumblr:' + blog.name).done(function (playlist) {
 
-        // And put it in a list
-        var list = new views.List.forCollection(collection);
-        $container.append(list.node);
-        list.init(); // TODO not sure what this does
+          // Add the tracks to the playlist
+          playlist.load('tracks');
+          playlist.tracks.add(models.Track.fromURIs(uris)).done(function () {
+
+            // And put it in a list
+            var list = new List.forPlaylist(playlist);
+            $container.append(list.node);
+            list.init(); // TODO not sure what this does
+
+          });
+
+        });
 
       });
 
