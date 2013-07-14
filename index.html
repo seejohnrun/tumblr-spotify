@@ -19,26 +19,32 @@
     <script src="scripts/main.js"></script>
 
 		<script type="text/template" id="blogs-template">
-			<h1>Tumblr</h1>
+			<div id="logo"></div>
 			<hr/>
 			<h2>Friends you follow</h2>
 			<div class="blogs"></div>
 		</script>
 
 		<script type="text/template" id="blog-card-template">
-			<a class="ovy" href="spotify:app:tumblr:blogName:<%= name %>">
+			<a class="cool-image" href="spotify:app:tumblr:blogName:<%= name %>">
 				<img src="<%= avatar96 %>">
 			</a>
 		</script>
 
 		<script type="text/template" id="blog-header-template">
-			<img src="<%= avatar128 %>">
-			<h2>Recent from <%= title %></h2>
-			<a href="<%= url %>"><%= url %></a>
+			<a class="cool-image cool-image-big" href="<%= url %>" style="float:left;">
+				<img src="<%= avatar128 %>">
+			</a>
+			<div class="desc" style="float:right;text-align:right;">
+				<h2>Recent from <%= title.trim() %></h2>
+				<a href="<%= url %>"><%= url %></a>
+			</div>
+
+			<div style="clear:both;"></div>
+			<hr/>
 		</script>
 
 		<script type="text/template" id="blog-template">
-			<a href="spotify:app:tumblr">back to friends</a>
 			<div id="blog"></div>
 		</script>
 
