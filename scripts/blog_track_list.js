@@ -6,6 +6,18 @@ require([
   var base = 'http://api.tumblr.com/v2/';
   var apiKey = 'xzGO5Gq1iF5aYb0pMGi9GHoqzICmWBkFg65FCsTrKtsG8aSFX7';
 
+  var loadFriends = function (blogNames, callback) {
+    var datas = [];
+    blogNames.forEach(function (blogName) {
+      $.get(base + 'blog/' + blogName + '/info?api_key=' + apiKey, function (data) {
+        datas.push(data.response.blog);
+        if (datas.length === blogNames.length) {
+          callback(datas);
+        }
+      });
+    });
+  };
+
   var trackListing = function (blogName, callback) {
 
     // Get the blog info
@@ -40,6 +52,7 @@ require([
 
   };
 
+  exports.loadFriends = loadFriends;
   exports.trackListing = trackListing;
 
 });

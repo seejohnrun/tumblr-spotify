@@ -7,11 +7,32 @@ require([
   'use strict';
 
   // blogs
-  var blogs = ['seejohnrun.tumblr.com', 'magerleagues.tumblr.com'];
+  var blogNames = ['seejohnrun.tumblr.com', 'magerleagues.tumblr.com'];
 
   $(function () {
 
+    // Put up the loading indicator
     var $container = $('#container');
+    $container.text('Loading...'); // TODO make prettier
+
+    // Add each of the friends as a link
+    blog_track_list.loadFriends(blogNames, function (blogs) {
+      var $blogs = $('<div class="blogs">');
+      blogs.forEach(function (blogDetail) {
+
+        var avatar = 'http://api.tumblr.com/v2/blog/' + blogDetail.name + '.tumblr.com/avatar/64';
+        var link = blogDetail.url;
+        var $blog = $('<div>').addClass('blog-link');
+        $blog.append($('<img>').attr('src', avatar));
+        $blog.append($('<h3>').text(blogDetail.title));
+        $blog.append($('<a>').attr('href', link).text(link));
+        $blogs.append($blog);
+
+      });
+      $container.html($blogs);
+    });
+
+    return; // FUCK OFF GOON
 
     for (var i = 0; i < blogs.length; i++) {
 
