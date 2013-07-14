@@ -17,7 +17,11 @@ require([
     'pitchfork.tumblr.com',
     'nprmusic.tumblr.com',
     'rollingstone.tumblr.com',
-
+    'thefader.tumblr.com',
+    'spotify.tumblr.com',
+    'cmj.tumblr.com',
+    'buzzfeedmusic.tumblr.com',
+    'iam.beyonce.com'
   ];
 
   $(function () {
