@@ -9,7 +9,7 @@ require([
   'use strict';
 
   // blogs
-  var blogNames = ['seejohnrun.tumblr.com', 'magerleagues.tumblr.com'];
+  var blogNames = ['seejohnrun.tumblr.com', 'magerleagues.tumblr.com', 'iam.beyonce.com'];
 
   $(function () {
 

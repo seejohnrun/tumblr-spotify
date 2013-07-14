@@ -21,14 +21,19 @@
 		<script type="text/template" id="blogs-template">
             <h1>Tumblr</h1>
 			<h2>Friends you follow</h2>
-			<div class="blogs"></div>
+			<ul class="blogs"></ul>
 		</script>
 
 		<script type="text/template" id="blog-card-template">
-			<a href="spotify:app:tumblr:blogName:<%= name %>">
-				<img src="<%= avatar64 %>">
-				<%= title %>
-			</a>
+            <li>
+                <div class="avy">
+                    <a href="spotify:app:tumblr:blogName:<%= name %>">
+                        <img src="<%= avatar64 %>">
+                    </a>
+                    <h4><a href="spotify:app:tumblr:blogName:<%= name %>"><%= title %></a>
+                    <p class="desc"><%= description %></p>
+                </div>
+            </li>
 		</script>
 
 		<script type="text/template" id="blog-header-template">
