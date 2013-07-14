@@ -10,7 +10,14 @@ require([
 
   // blogs
   var blogNames = [
-    'seejohnrun.tumblr.com', 'magerleagues.tumblr.com', 'strle.tumblr.com'
+    'seejohnrun.tumblr.com',
+    'magerleagues.tumblr.com',
+    'strle.tumblr.com',
+    'gotmelookingsocrazyrightnow.tumblr.com',
+    'pitchfork.tumblr.com',
+    'nprmusic.tumblr.com',
+    'rollingstone.tumblr.com',
+
   ];
 
   $(function () {
