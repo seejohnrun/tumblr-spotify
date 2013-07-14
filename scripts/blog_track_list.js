@@ -34,20 +34,24 @@ require([
 
             // FAIL
             if (! post.track_name) {
-              pending -= 1;
+              if (!(pending -= 1)) { callback(data.response.blog, uris); }
               return;
+            }
+
+            // do we already have the URI?
+            if (post.source_title === 'Spotify') {
+              var m = post.source_url.match(/track\/(\w+)/);
+              if (m) {
+                uris.push('spotify:track:' + m[1]);
+                if (!(pending -= 1)) { callback(data.response.blog, uris); }
+                return;
+              }
             }
 
             var searcher = Search.search(post.track_name + '  ' + post.artist);
             searcher.tracks.snapshot({ length: 1 }).done(function (t) {
-
               if (t.length > 0) { uris.push(t._uris[0]); } // add result
-
-              pending -= 1;
-              if (pending === 0) {
-                callback(data.response.blog, uris);
-              }
-
+              if (!(pending -= 1)) { callback(data.response.blog, uris); }
             });
 
           });

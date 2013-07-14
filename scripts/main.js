@@ -58,6 +58,7 @@ require([
         if (uris.length === 0) { return; }
 
         // Load up detail about this person
+        blog.avatar128 = 'http://api.tumblr.com/v2/blog/' + blog.name + '.tumblr.com/avatar/128';
         $blog.append(blogHeaderTemplate(blog));
 
         // Make an OTF playlist
