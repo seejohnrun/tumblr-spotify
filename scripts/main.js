@@ -9,7 +9,9 @@ require([
   'use strict';
 
   // blogs
-  var blogNames = ['seejohnrun.tumblr.com', 'magerleagues.tumblr.com', 'iam.beyonce.com'];
+  var blogNames = [
+    'seejohnrun.tumblr.com', 'magerleagues.tumblr.com', 'strle.tumblr.com'
+  ];
 
   $(function () {
 
@@ -53,6 +55,8 @@ require([
       var blogThrobber = Throbber.forElement($blog[0]);
 
       blog_track_list.trackListing(blogName, function (blog, uris) {
+
+        uris = _.compact(uris);
 
         blogThrobber.hide();
         if (uris.length === 0) { return; }

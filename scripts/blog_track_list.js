@@ -18,6 +18,13 @@ require([
     });
   };
 
+  var findTrack = function (term, i, callback) {
+    var searcher = Search.search(term);
+    searcher.tracks.snapshot({ length: 1 }).done(function (t) {
+      callback(t, i);
+    });
+  };
+
   var trackListing = function (blogName, callback) {
 
     // Get the blog info
@@ -28,37 +35,40 @@ require([
       // Grab songs and find on spotify
       $.get(base + 'blog/' + blogName + '.tumblr.com/posts?type=audio&limit=50&api_key=' + apiKey, function (postData) {
 
-          var uris = [];
-          var pending = postData.response.posts.length;
-          postData.response.posts.forEach(function (post) {
+        var posts = postData.response.posts;
+        var uris = new Array(posts.length);
+        var pending = posts.length;
 
-            // FAIL
-            if (! post.track_name) {
+        for (var i = 0; i < posts.length; i++) {
+
+          var post = posts[i];
+
+          // do we already have the URI?
+          if (post.source_title === 'Spotify') {
+            var m = post.source_url.match(/track\/(\w+)/);
+            if (m) {
+              uris[i] = 'spotify:track:' + m[1];
               if (!(pending -= 1)) { callback(data.response.blog, uris); }
-              return;
+              continue;
             }
+          }
 
-            // do we already have the URI?
-            if (post.source_title === 'Spotify') {
-              var m = post.source_url.match(/track\/(\w+)/);
-              if (m) {
-                uris.push('spotify:track:' + m[1]);
-                if (!(pending -= 1)) { callback(data.response.blog, uris); }
-                return;
-              }
-            }
+          // FAIL
+          if (! post.track_name) {
+            if (!(pending -= 1)) { callback(data.response.blog, uris); }
+            continue;
+          }
 
-            var searcher = Search.search(post.track_name + '  ' + post.artist);
-            searcher.tracks.snapshot({ length: 1 }).done(function (t) {
-              if (t.length > 0) { uris.push(t._uris[0]); } // add result
-              if (!(pending -= 1)) { callback(data.response.blog, uris); }
-            });
-
+          findTrack(post.track_name + ' ' + post.artist, i, function (t, i) {
+            if (t.length > 0) { uris[i] = t._uris[0]; } // add result
+            if (!(pending -= 1)) { callback(data.response.blog, uris); }
           });
 
-        });
+        };
 
       });
+
+    });
 
   };
 
