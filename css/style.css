@@ -5,3 +5,5 @@ html {
 .blogs, #blog {
 	min-height: 100px;
 }
+
+h1 {background: no-repeat url('../images/tumblr.png');width:420px;height:120px;text-indent:-9999em;}
