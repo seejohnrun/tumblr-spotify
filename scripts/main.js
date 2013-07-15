@@ -38,6 +38,7 @@ require([
     var blogsTemplate = _.template($('#blogs-template').html());
     var blogTemplate = _.template($('#blog-template').html());
     var blogHeaderTemplate = _.template($('#blog-header-template').html());
+    var blogEmptyTemplate = _.template($('#blog-empty-template').html());
 
     // Handle new requests
     var start = function (args) {
@@ -82,7 +83,10 @@ require([
         $blog.append(blogHeaderTemplate(blog));
 
         // be able to stop
-        if (uris.length === 0) { return; }
+        if (uris.length === 0) {
+          $blog.append(blogEmptyTemplate());
+          return;
+        }
 
         // Make an OTF playlist
         var tempName = 'tumblr:' + blog.name + ':' + new Date().getTime().toString();
