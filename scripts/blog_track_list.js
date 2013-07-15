@@ -19,7 +19,7 @@ require([
   };
 
   var findTrack = function (term, i, callback) {
-    var searcher = Search.search(term);
+    var searcher = Search.search(term.trim());
     searcher.tracks.snapshot({ length: 1 }).done(function (t) {
       callback(t, i);
     });
@@ -59,7 +59,7 @@ require([
             continue;
           }
 
-          findTrack(post.track_name + ' ' + post.artist, i, function (t, i) {
+          findTrack(post.track_name + ' ' + (post.artist || ''), i, function (t, i) {
             if (t.length > 0) { uris[i] = t._uris[0]; } // add result
             if (!(pending -= 1)) { callback(data.response.blog, uris); }
           });
