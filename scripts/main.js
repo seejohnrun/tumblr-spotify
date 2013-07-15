@@ -27,7 +27,9 @@ require([
     'spotify.tumblr.com',
     'cmj.tumblr.com',
     'buzzfeedmusic.tumblr.com',
-    'iam.beyonce.com'
+    'iam.beyonce.com',
+    'thisisnthappiness.com',
+    'fredwilson.vc'
   ];
 
   $(function () {
