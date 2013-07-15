@@ -29,7 +29,11 @@ require([
     'buzzfeedmusic.tumblr.com',
     'iam.beyonce.com',
     'thisisnthappiness.com',
-    'fredwilson.vc'
+    'fredwilson.vc',
+    'music.tumblr.com',
+    'guardianmusic.tumblr.com',
+    'officialwarped.tumblr.com',
+    'soundboardmusic.fm'
   ];
 
   $(function () {
