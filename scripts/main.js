@@ -76,11 +76,13 @@ require([
         uris = _.compact(uris);
 
         blogThrobber.hide();
-        if (uris.length === 0) { return; }
 
         // Load up detail about this person
         blog.avatar128 = 'http://api.tumblr.com/v2/blog/' + blog.name + '.tumblr.com/avatar/128';
         $blog.append(blogHeaderTemplate(blog));
+
+        // be able to stop
+        if (uris.length === 0) { return; }
 
         // Make an OTF playlist
         var tempName = 'tumblr:' + blog.name + ':' + new Date().getTime().toString();
