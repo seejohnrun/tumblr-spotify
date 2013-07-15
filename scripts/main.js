@@ -22,7 +22,7 @@ require([
     'britneyspears.tumblr.com',
     'arianasings.tumblr.com',
     'dirtylovinghippies.tumblr.com',
-    'thekeysofalicia.tumblr.com',
+    'autoreverse.tumblr.com',
     'thefader.tumblr.com',
     'spotify.tumblr.com',
     'cmj.tumblr.com',
